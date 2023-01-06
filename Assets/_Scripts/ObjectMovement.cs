@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using Random = System.Random;
 
 public class ObjectMovement : MonoBehaviour
 {
@@ -8,11 +9,12 @@ public class ObjectMovement : MonoBehaviour
     
     private int _rotationCount;
     private Level _level;
-
-
+    private Random _random = new Random();
+    
     private void Start()
     {
         _level = GameObject.Find("EventSystem").GetComponent<Level>();
+        movementSpeed = _random.Next(1, 4);
     }
 
     void Update()
@@ -25,12 +27,6 @@ public class ObjectMovement : MonoBehaviour
         else
         {
             Destroy(transform.GameObject());
-        }
-        
-        if (transform.position.y < 50)
-        {
-            Destroy(transform.GameObject());
-            _level.health--;
         }
     }
 

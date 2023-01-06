@@ -1,8 +1,7 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using Random = System.Random;
 
 public class Level : MonoBehaviour
 {
@@ -15,6 +14,7 @@ public class Level : MonoBehaviour
     private TMP_Text _pointsText;
     private TMP_Text _healthText;
     private ButtonClick _buttonClick;
+    private Random _random = new Random();
 
     [SerializeField] private GameObject gameOverCanvas;
 
@@ -56,5 +56,11 @@ public class Level : MonoBehaviour
         health = maxHealth;
         gameOverCanvas.SetActive(false);
         IsPlay = true;
+    }
+
+    private void SpawnObjects()
+    {
+        int objectChance = _random.Next(1, 11);
+        
     }
 }
