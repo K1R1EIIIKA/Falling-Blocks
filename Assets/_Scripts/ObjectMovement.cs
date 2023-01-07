@@ -4,8 +4,8 @@ using Random = System.Random;
 
 public class ObjectMovement : MonoBehaviour
 {
-    [SerializeField] private float movementSpeed = 2;
-    [SerializeField] private float rotationSpeed = 2;
+    private float _movementSpeed;
+    private float _rotationSpeed;
     
     private int _rotationCount;
     private Level _level;
@@ -14,7 +14,8 @@ public class ObjectMovement : MonoBehaviour
     private void Start()
     {
         _level = GameObject.Find("EventSystem").GetComponent<Level>();
-        movementSpeed = _random.Next(2, 6);
+        _movementSpeed = _random.Next(2, 6);
+        _rotationSpeed = _random.Next(1, 4);
     }
 
     void Update()
@@ -30,12 +31,12 @@ public class ObjectMovement : MonoBehaviour
 
     private void Move()
     {
-        transform.position += new Vector3(0, -1, 0) * movementSpeed;
+        transform.position += new Vector3(0, -1, 0) * _movementSpeed;
     }
 
     private void Rotate()
     {
         _rotationCount++;
-        transform.rotation = Quaternion.Euler(0, 0, _rotationCount * rotationSpeed / 10);
+        transform.rotation = Quaternion.Euler(0, 0, _rotationCount * _rotationSpeed / 10);
     }
 }
