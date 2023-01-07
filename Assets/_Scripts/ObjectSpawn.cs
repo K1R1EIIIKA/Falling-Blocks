@@ -9,7 +9,7 @@ public class ObjectSpawn : MonoBehaviour
 
     private Random _random = new Random();
     private int _objectChance;
-    private int _randomPositionX;
+    private Vector3 _randomPosition;
     private Level _level;
 
     private void Start()
@@ -24,23 +24,23 @@ public class ObjectSpawn : MonoBehaviour
             return;
 
         _objectChance = _random.Next(1, 11);
-        _randomPositionX = _random.Next(75, 1001);
+        _randomPosition = new Vector3(_random.Next(75, 1001), 2060, -0.1f);
 
         switch (_objectChance)
         {
             case 1: case 2: case 3: case 4: case 5:
             {
-                Instantiate(pomegranatePrefab, new Vector3(_randomPositionX, 2060, -0.1f), Quaternion.identity);
+                Instantiate(pomegranatePrefab, _randomPosition, Quaternion.identity);
                 break;
             }
             case 6: case 7:
             {
-                Instantiate(peachPrefab, new Vector3(_randomPositionX, 2060, -0.1f), Quaternion.identity);
+                Instantiate(peachPrefab, _randomPosition, Quaternion.identity);
                 break;
             }
             case 8: case 9: case 10:
             {
-                Instantiate(axePrefab, new Vector3(_randomPositionX, 2060, -0.1f), Quaternion.identity);
+                Instantiate(axePrefab, _randomPosition, Quaternion.identity);
                 break;
             }
         }
