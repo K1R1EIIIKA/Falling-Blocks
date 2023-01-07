@@ -14,7 +14,7 @@ public class ObjectMovement : MonoBehaviour
     private void Start()
     {
         _level = GameObject.Find("EventSystem").GetComponent<Level>();
-        movementSpeed = _random.Next(1, 4);
+        movementSpeed = _random.Next(2, 6);
     }
 
     void Update()
@@ -25,9 +25,7 @@ public class ObjectMovement : MonoBehaviour
             Rotate();
         }
         else
-        {
             Destroy(transform.GameObject());
-        }
     }
 
     private void Move()

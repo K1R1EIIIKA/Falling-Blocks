@@ -8,11 +8,13 @@ public class Level : MonoBehaviour
     public int maxHealth = 5;
     public int health = 5;
     public int points;
+    public float spawnRate = 0.5f;
 
     [NonSerialized] public bool IsPlay = true;
 
     private TMP_Text _pointsText;
     private TMP_Text _healthText;
+    private TMP_Text _loseText;
     private ButtonClick _buttonClick;
     private Random _random = new Random();
 
@@ -41,26 +43,24 @@ public class Level : MonoBehaviour
 
     private void SetPoints()
     {
-        _pointsText.text = points.ToString();
+        _pointsText.text = "Очков: " + points;
         _healthText.text = "Жизней: " + health;
     }
 
     private void Die()
     {
         gameOverCanvas.SetActive(true);
+        _loseText = GameObject.Find("LoseText").GetComponent<TMP_Text>();
+        _loseText.text = "Вы проиграли\n Очков набрано: " + points;
         IsPlay = false;
     }
 
     private void Restart()
     {
         health = maxHealth;
+        points = 0;
+        
         gameOverCanvas.SetActive(false);
         IsPlay = true;
-    }
-
-    private void SpawnObjects()
-    {
-        int objectChance = _random.Next(1, 11);
-        
     }
 }
